@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            elementFormDefault="unqualified">
+
+  <xsd:include id="LSCommonTypes"
+               schemaLocation="LS-CommonTypes.xsd" />
+
+  <xsd:element name="logonInformation">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="aircraftAddressHex" type="ICAOAircraftAddress" />
+        <xsd:element name="cmLogonRequest" type="CMLogonRequest" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  
+</xsd:schema>
