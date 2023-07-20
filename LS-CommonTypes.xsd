@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            elementFormDefault="unqualified">
+
+  <xsd:simpleType name="ICAOAircraftAddress">
+    <xsd:restriction base="xsd:string">
+        <xsd:pattern value="[A-F0-9]{6}"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+<xs:complexType name="FlightIdentification">
+    <xs:sequence>
+      <xs:element name="aircraftAddressHex" type="ICAOAircraftAddress"/>
+      <xs:element name="flightID" type="AircraftFlightIdentification"/>
+      <xs:element name="arrivalAirport" minOccurs="0" type="Airport"/>
+      <xs:element name="departureAirport" minOccurs="0" type="Airport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xsd:complexType name="CMLogonRequest">
+    <xsd:sequence>
+      <xsd:element name="aircraftFlightIdentification"
+                   type="AircraftFlightIdentification"/>
+      <xsd:element name="cMLongTSAP" type="LongTsap"/>
+      <xsd:element name="groundInitiatedApplications" minOccurs="0" >
+        <xsd:complexType>
+          <xsd:sequence minOccurs="1" maxOccurs="256">
+            <xsd:element name="AEQualifierVersionAddress"
+                         type="AEQualifierVersionAddress"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="airOnlyInitiatedApplications" minOccurs="0" >
+        <xsd:complexType>
+          <xsd:sequence minOccurs="1" maxOccurs="256">
+            <xsd:element name="AEQualifierVersion" type="AEQualifierVersion"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="facilityDesignation" minOccurs="0"
+                   type="FacilityDesignation"/>
+      <xsd:element name="airportDeparture" minOccurs="0" type="Airport"/>
+      <xsd:element name="airportDestination" minOccurs="0" type="Airport"/>
+      <xsd:element name="dateTimeDepartureETD" minOccurs="0" type="DateTime"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:simpleType name="Airport">
+    <xsd:restriction base="xsd:string">
+      <xsd:length value="4"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+   <xsd:simpleType name="Year">
+      <xsd:restriction base="xsd:unsignedShort">
+         <xsd:minInclusive value="1996"/>
+         <xsd:maxInclusive value="2095"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+
+   <xsd:simpleType name="Month">
+      <xsd:restriction base="xsd:unsignedByte">
+         <xsd:minInclusive value="1"/>
+         <xsd:maxInclusive value="12"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+
+   <xsd:simpleType name="Day">
+      <xsd:restriction base="xsd:unsignedByte">
+         <xsd:minInclusive value="1"/>
+         <xsd:maxInclusive value="31"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+
+   <xsd:complexType name="Date">
+      <xsd:sequence>
+         <xsd:element name="year" type="Year"/>
+         <xsd:element name="month" type="Month"/>
+         <xsd:element name="day" type="Day"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:simpleType name="Timehours">
+      <xsd:restriction base="xsd:unsignedByte">
+         <xsd:minInclusive value="0"/>
+         <xsd:maxInclusive value="23"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+
+   <xsd:simpleType name="Timeminutes">
+      <xsd:restriction base="xsd:unsignedByte">
+         <xsd:minInclusive value="0"/>
+         <xsd:maxInclusive value="59"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+
+   <xsd:complexType name="Time">
+      <xsd:sequence>
+         <xsd:element name="hours" type="Timehours"/>
+         <xsd:element name="minutes" type="Timeminutes"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+  <xsd:complexType name="DateTime">
+    <xsd:sequence>
+      <xsd:element name="date" type="Date"/>
+      <xsd:element name="time" type="Time"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:simpleType name="AircraftFlightIdentification">
+    <xsd:restriction base="xsd:string">
+      <xsd:minLength value="2"/>
+      <xsd:maxLength value="8"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:complexType name="ShortTsap">
+    <xsd:sequence>
+      <xsd:element name="aRS" minOccurs="0" >
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:hexBinary">
+            <xsd:length value="3"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="locSysNselTsel" >
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:hexBinary">
+            <xsd:minLength value="10"/>
+            <xsd:maxLength value="11"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="LongTsap">
+    <xsd:sequence>
+      <xsd:element name="rDP" >
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:hexBinary">
+            <xsd:length value="5"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="shortTsap" type="ShortTsap"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:simpleType name="VersionNumber">
+    <xsd:restriction base="xsd:unsignedByte">
+      <xsd:minInclusive value="1"/>
+      <xsd:maxInclusive value="255"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:complexType name="APAddress">
+    <xsd:choice>
+      <xsd:element name="longTsap" type="LongTsap"/>
+      <xsd:element name="shortTsap" type="ShortTsap"/>
+    </xsd:choice>
+  </xsd:complexType>
+
+  <xsd:complexType name="AEQualifierVersionAddress">
+    <xsd:sequence>
+      <xsd:element name="aeQualifier" type="AEQualifier"/>
+      <xsd:element name="apVersion" type="VersionNumber"/>
+      <xsd:element name="apAddress" type="APAddress"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:simpleType name="AEQualifier">
+    <xsd:restriction base="xsd:unsignedByte"/>
+  </xsd:simpleType>
+
+  <xsd:complexType name="AEQualifierVersion">
+    <xsd:sequence>
+      <xsd:element name="aeQualifier" type="AEQualifier"/>
+      <xsd:element name="apVersion" type="VersionNumber"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:simpleType name="FacilityDesignation">
+    <xsd:restriction base="xsd:string">
+      <xsd:minLength value="4"/>
+      <xsd:maxLength value="8"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+</xsd:schema>
