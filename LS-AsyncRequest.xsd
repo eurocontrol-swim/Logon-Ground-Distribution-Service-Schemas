@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            elementFormDefault="unqualified">
+
+  <xsd:include id="LSCommonTypes"
+               schemaLocation="LS-CommonTypes.xsd" />
+
+  <!-- Asynchronous Logon Information Request 
+       Payload of the POST method -->
+  <xsd:element name="asyncLogonInformationRequest"
+               type="AsyncLogonInformationRequest"/>
+
+  <!-- Payload of the reply to the POST method -->
+  <xsd:element name="asyncLogonInformationReply">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="asyncLogonId" type="xsd:NCName"/>
+        <xsd:element name="endpoint" type="xsd:Name" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+  <!-- Type definition -->
+  <xsd:complexType name="AsyncLogonInformationRequest">
+    <xsd:sequence>
+      <xsd:element name="aircraftAddressHex" type="ICAOAircraftAddress" />
+      <xsd:element name="delivery" type="DeliveryMethod" />
+      <!-- Timeout in minutes, if not specified no timeout will be
+           applied -->
+      <xsd:element name="timeout" type="xsd:integer"
+                   minOccurs="0" />
+      <!-- Optional existing endpoint on which the async reply will be
+           sent -->
+      <xsd:element name="endpoint" type="xsd:Name"
+                   minOccurs="0" />
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:complexType name="EnumerationValue" final="#all" />
+  
+  <xsd:complexType name="DeliveryMethod">
+    <xsd:choice>
+      <xsd:element name="swim" type="EnumerationValue"/>
+      <xsd:element name="cm-forward" type="EnumerationValue"/>
+      <xsd:element name="cm-contact" type="EnumerationValue"/>
+      <!-- more possibilities ?? --> 
+    </xsd:choice>
+  </xsd:complexType>
+
+</xsd:schema>
