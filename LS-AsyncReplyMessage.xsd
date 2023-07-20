@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            elementFormDefault="unqualified">
+
+  <xsd:include id="LSCommonTypes"
+               schemaLocation="LS-CommonTypes.xsd" />
+
+  <xsd:element name="asyncLogonInformation"
+               type="AsyncLogonInformation"/>
+
+  <xsd:complexType name="AsyncLogonInformation">
+    <xsd:sequence>
+      <xsd:element name="asyncLogonId" type="xsd:NCName"/>
+      <xsd:element name="aircraftAddressHex" type="ICAOAircraftAddress" />
+      <xsd:element name="result" type="AsyncRequestResult" />
+      <xsd:element name="cmLogonRequest" type="CMLogonRequest"
+                   minOccurs="0" /> 
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="AsyncRequestResult">
+    <xsd:sequence>
+      <xsd:element name="code" type="AsyncResultCode" />
+      <xsd:element name="details" type="xsd:string"
+                   minOccurs="0" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="EnumerationValue" final="#all" />
+  
+  <xsd:complexType name="AsyncResultCode">
+    <xsd:choice>
+      <xsd:element name="success" type="EnumerationValue"/>
+      <xsd:element name="failure" type="EnumerationValue"/>
+      <xsd:element name="timeout" type="EnumerationValue"/>
+      <!-- more possibilities ?? --> 
+    </xsd:choice>
+  </xsd:complexType>
+
+
+</xsd:schema>
