@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            elementFormDefault="unqualified">
+
+  <xsd:include id="LSCommonTypes"
+               schemaLocation="LS-CommonTypes.xsd" />
+
+  <xsd:element name="authorityManagementReply"
+               type="AuthorityManagementReply"/>
+
+  <xsd:complexType name="AuthorityManagementReply">
+    <xsd:sequence>
+      <xsd:element name="facilityDesignation"
+                   type="FacilityDesignation"/>
+      <xsd:element name="timeStamp"
+                   type="xsd:dateTime"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+</xsd:schema>
