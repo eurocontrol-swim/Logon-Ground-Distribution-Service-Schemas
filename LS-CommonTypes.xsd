@@ -8,14 +8,14 @@
     </xsd:restriction>
   </xsd:simpleType>
 
-<xs:complexType name="FlightIdentification">
-    <xs:sequence>
-      <xs:element name="aircraftAddressHex" type="ICAOAircraftAddress"/>
-      <xs:element name="flightID" type="AircraftFlightIdentification"/>
-      <xs:element name="arrivalAirport" minOccurs="0" type="Airport"/>
-      <xs:element name="departureAirport" minOccurs="0" type="Airport"/>
-    </xs:sequence>
-  </xs:complexType>
+<xsd:complexType name="FlightIdentification">
+    <xsd:sequence>
+      <xsd:element name="aircraftAddressHex" type="ICAOAircraftAddress"/>
+      <xsd:element name="flightID" type="AircraftFlightIdentification"/>
+      <xsd:element name="arrivalAirport" minOccurs="0" type="Airport"/>
+      <xsd:element name="departureAirport" minOccurs="0" type="Airport"/>
+    </xsd:sequence>
+  </xsd:complexType>
 
   <xsd:complexType name="CMLogonRequest">
     <xsd:sequence>
