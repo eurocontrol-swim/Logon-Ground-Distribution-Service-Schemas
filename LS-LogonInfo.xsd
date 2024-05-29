@@ -10,7 +10,7 @@
       <xsd:sequence>
         <xsd:element name="aircraftAddressHex" type="ICAOAircraftAddress" />
         <xsd:element name="cmLogonRequest" type="CMLogonRequest" />
-        <xs:element name="adsVersion" minOccurs="0" type="VersionNumber" />
+        <xsd:element name="adsVersion" minOccurs="0" type="VersionNumber" />
       </xsd:sequence>
     </xsd:complexType>
   </xsd:element>
