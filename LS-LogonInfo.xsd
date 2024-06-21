@@ -5,15 +5,6 @@
   <xsd:include id="LSCommonTypes"
                schemaLocation="LS-CommonTypes.xsd" />
 
-  <xsd:element name="logonInformation">
-    <xsd:complexType>
-      <xsd:sequence>
-        <xsd:element name="aircraftAddressHex" type="ICAOAircraftAddress" />
-        <xsd:element name="cmLogonRequest" type="CMLogonRequest" />
-        <xsd:element name="adsVersion" minOccurs="0" type="VersionNumber" />
-      </xsd:sequence>
-    </xsd:complexType>
-  </xsd:element>
+  <xsd:element name="logonInformation" type="LogonInformation" />
   
 </xsd:schema>
-
