@@ -13,7 +13,7 @@
       <xsd:element name="asyncLogonId" type="xsd:NCName"/>
       <xsd:element name="aircraftAddressHex" type="ICAOAircraftAddress" />
       <xsd:element name="result" type="AsyncRequestResult" />
-      <xsd:element name="cmLogonRequest" type="CMLogonRequest"
+      <xsd:element name="logonInformation" type="LogonInformation"
                    minOccurs="0" /> 
     </xsd:sequence>
   </xsd:complexType>
