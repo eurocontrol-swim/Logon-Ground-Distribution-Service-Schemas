@@ -44,6 +44,14 @@
       <xsd:element name="dateTimeDepartureETD" minOccurs="0" type="DateTime"/>
     </xsd:sequence>
   </xsd:complexType>
+  
+  <xsd:complexType name="LogonInformation">
+    <xsd:sequence>
+      <xsd:element name="aircraftAddressHex" type="ICAOAircraftAddress" />
+      <xsd:element name="cmLogonRequest" type="CMLogonRequest" />
+      <xsd:element name="adsVersion" minOccurs="0" type="VersionNumber" />
+    </xsd:sequence>
+  </xsd:complexType>
 
   <xsd:simpleType name="Airport">
     <xsd:restriction base="xsd:string">
